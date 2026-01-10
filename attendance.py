@@ -3,13 +3,14 @@ from tkinter import filedialog
 import cv2
 import boto3
 import time
+import os
 
-# AWS Rekognition client (keeping your keys for now)
-session = boto3.Session(
-    aws_access_key_id='YOUR_AWS_ACCESS_KEY',
-    aws_secret_access_key='YOUR_AWS_SECRET_KEY',
+rek = boto3.client(
+    'rekognition',
+    aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+    aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
+    region_name='us-east-1'
 )
-rek = session.client('rekognition', 'us-east-1')
 
 
 def start_facial_recognition():
